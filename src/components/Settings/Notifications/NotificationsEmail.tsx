@@ -41,15 +41,15 @@ const messages = defineMessages({
   emailNotificationTypesAlertDescriptionPt2:
     '<strong>Media Approved</strong>, <strong>Media Declined</strong>, and <strong>Media Available</strong>\
     email notifications are sent to the user who submitted the request.',
-  pgpPrivateKey: '<PgpLink>PGP</PgpLink> Private Key',
+  pgpPrivateKey: 'PGP Private Key',
   pgpPrivateKeyTip:
-    'Sign encrypted email messages (PGP password is also required)',
-  pgpPassword: '<PgpLink>PGP</PgpLink> Password',
+    'Sign encrypted email messages using <OpenPgpLink>OpenPGP</OpenPgpLink> (PGP password is also required)',
+  pgpPassword: 'PGP Password',
   pgpPasswordTip:
-    'Sign encrypted email messages (PGP private key is also required)',
+    'Sign encrypted email messages using <OpenPgpLink>OpenPGP</OpenPgpLink> (PGP private key is also required)',
 });
 
-export function PgpLink(msg: string): JSX.Element {
+export function OpenPgpLink(msg: string): JSX.Element {
   return (
     <a
       href="https://www.openpgp.org/"
@@ -321,15 +321,15 @@ const NotificationsEmail: React.FC = () => {
               <div className="form-row">
                 <label htmlFor="pgpPrivateKey" className="text-label">
                   <span className="mr-2">
-                    {intl.formatMessage(messages.pgpPrivateKey, {
-                      PgpLink: PgpLink,
-                    })}
+                    {intl.formatMessage(messages.pgpPrivateKey)}
                   </span>
                   <Badge badgeType="danger">
                     {intl.formatMessage(globalMessages.advanced)}
                   </Badge>
                   <span className="label-tip">
-                    {intl.formatMessage(messages.pgpPrivateKeyTip)}
+                    {intl.formatMessage(messages.pgpPrivateKeyTip, {
+                      OpenPgpLink: OpenPgpLink,
+                    })}
                   </span>
                 </label>
                 <div className="form-input">
@@ -346,15 +346,15 @@ const NotificationsEmail: React.FC = () => {
               <div className="form-row">
                 <label htmlFor="pgpPassword" className="text-label">
                   <span className="mr-2">
-                    {intl.formatMessage(messages.pgpPassword, {
-                      PgpLink: PgpLink,
-                    })}
+                    {intl.formatMessage(messages.pgpPassword)}
                   </span>
                   <Badge badgeType="danger">
                     {intl.formatMessage(globalMessages.advanced)}
                   </Badge>
                   <span className="label-tip">
-                    {intl.formatMessage(messages.pgpPasswordTip)}
+                    {intl.formatMessage(messages.pgpPasswordTip, {
+                      OpenPgpLink: OpenPgpLink,
+                    })}
                   </span>
                 </label>
                 <div className="form-input">
