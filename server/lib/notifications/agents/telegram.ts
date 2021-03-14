@@ -176,7 +176,7 @@ class TelegramAgent
       // Send user notification
       if (
         this.userNotificationTypes.includes(type) &&
-        payload.notifyUser.settings?.enableNotifications &&
+        payload.notifyUser.settings?.enableTelegram &&
         payload.notifyUser.settings?.telegramChatId &&
         payload.notifyUser.settings?.telegramChatId !==
           this.getSettings().options.chatId

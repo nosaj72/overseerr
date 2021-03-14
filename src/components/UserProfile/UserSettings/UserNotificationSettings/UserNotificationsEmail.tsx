@@ -18,6 +18,7 @@ const messages = defineMessages({
   saving: 'Saving…',
   emailsettingssaved: 'Email notification settings saved successfully!',
   emailsettingsfailed: 'Email notification settings failed to save.',
+  enableEmail: 'Enable Notifications',
   pgpKey: 'PGP Public Key',
   pgpKeyTip: 'Encrypt email messages using <OpenPgpLink>OpenPGP</OpenPgpLink>',
 });
@@ -62,6 +63,14 @@ const UserEmailSettings: React.FC = () => {
       {({ errors, touched, isSubmitting }) => {
         return (
           <Form className="section">
+            <div className="form-row">
+              <label htmlFor="enableEmail" className="checkbox-label">
+                {intl.formatMessage(messages.enableEmail)}
+              </label>
+              <div className="form-input">
+                <Field type="checkbox" id="enableEmail" name="enableEmail" />
+              </div>
+            </div>
             <div className="form-row">
               <label htmlFor="pgpKey" className="text-label">
                 <span className="mr-2">

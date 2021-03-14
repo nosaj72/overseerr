@@ -28,7 +28,8 @@ class EmailAgent
     if (
       settings.enabled &&
       hasNotificationType(type, this.getSettings().types) &&
-      (payload.notifyUser.settings?.enableNotifications ?? true)
+      (!this.userNotificationTypes.includes(type) ||
+        (payload.notifyUser.settings?.enableEmail ?? true))
     ) {
       return true;
     }
@@ -45,7 +46,11 @@ class EmailAgent
 
       // Send to all users with the manage requests permission (or admins)
       users
-        .filter((user) => user.hasPermission(Permission.MANAGE_REQUESTS))
+        .filter(
+          (user) =>
+            user.hasPermission(Permission.MANAGE_REQUESTS) &&
+            (user.settings?.enableEmail ?? true)
+        )
         .forEach((user) => {
           const email = new PreparedEmail(payload.notifyUser.settings?.pgpKey);
 
@@ -95,7 +100,11 @@ class EmailAgent
 
       // Send to all users with the manage requests permission (or admins)
       users
-        .filter((user) => user.hasPermission(Permission.MANAGE_REQUESTS))
+        .filter(
+          (user) =>
+            user.hasPermission(Permission.MANAGE_REQUESTS) &&
+            (user.settings?.enableEmail ?? true)
+        )
         .forEach((user) => {
           const email = new PreparedEmail(payload.notifyUser.settings?.pgpKey);
 
@@ -189,7 +198,11 @@ class EmailAgent
 
       // Send to all users with the manage requests permission (or admins)
       users
-        .filter((user) => user.hasPermission(Permission.MANAGE_REQUESTS))
+        .filter(
+          (user) =>
+            user.hasPermission(Permission.MANAGE_REQUESTS) &&
+            (user.settings?.enableEmail ?? true)
+        )
         .forEach((user) => {
           const email = new PreparedEmail();
 

@@ -218,7 +218,7 @@ class DiscordAgent
 
       if (
         this.userNotificationTypes.includes(type) &&
-        payload.notifyUser.settings?.enableNotifications &&
+        payload.notifyUser.settings?.enableDiscord &&
         payload.notifyUser.settings?.discordId
       ) {
         mentionedUsers.push(payload.notifyUser.settings.discordId);
