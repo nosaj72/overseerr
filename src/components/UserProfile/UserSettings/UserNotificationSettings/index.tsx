@@ -3,6 +3,7 @@ import React from 'react';
 import { defineMessages, useIntl } from 'react-intl';
 import useSWR from 'swr';
 import { useUser } from '../../../../hooks/useUser';
+import useSettings from '../../../../hooks/useSettings';
 import Error from '../../../../pages/_error';
 import LoadingSpinner from '../../../Common/LoadingSpinner';
 import { UserSettingsNotificationsResponse } from '../../../../../server/interfaces/api/userSettingsInterfaces';
@@ -22,6 +23,7 @@ const messages = defineMessages({
 const UserNotificationSettings: React.FC = ({ children }) => {
   const intl = useIntl();
   const router = useRouter();
+  const settings = useSettings();
   const { user } = useUser({ id: Number(router.query.userId) });
   const { data, error } = useSWR<UserSettingsNotificationsResponse>(
     user ? `/api/v1/user/${user?.id}/settings/notifications` : null
@@ -51,6 +53,9 @@ const UserNotificationSettings: React.FC = ({ children }) => {
       ),
       route: `/users/${user?.id}/settings/notifications/email`,
       regex: /\/settings\/notifications\/email/,
+      hidden:
+        !settings.currentSettings.notificationsEnabled ||
+        !settings.currentSettings.emailEnabled,
     },
     {
       text: 'Discord',
@@ -73,6 +78,9 @@ const UserNotificationSettings: React.FC = ({ children }) => {
       ),
       route: `/users/${user?.id}/settings/notifications/telegram`,
       regex: /\/settings\/notifications\/telegram/,
+      hidden:
+        !settings.currentSettings.notificationsEnabled ||
+        !settings.currentSettings.telegramEnabled,
     },
   ];
 

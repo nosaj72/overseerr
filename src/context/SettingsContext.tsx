@@ -16,6 +16,10 @@ const defaultSettings = {
   region: '',
   originalLanguage: '',
   partialRequestsEnabled: true,
+  notificationsEnabled: false,
+  emailEnabled: false,
+  discordEnabled: false,
+  telegramEnabled: false,
 };
 
 export const SettingsContext = React.createContext<SettingsContextProps>({

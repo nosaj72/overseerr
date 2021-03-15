@@ -28,6 +28,10 @@ export interface PublicSettingsResponse {
   region: string;
   originalLanguage: string;
   partialRequestsEnabled: boolean;
+  notificationsEnabled: boolean;
+  emailEnabled: boolean;
+  discordEnabled: boolean;
+  telegramEnabled: boolean;
 }
 
 export interface CacheItem {
