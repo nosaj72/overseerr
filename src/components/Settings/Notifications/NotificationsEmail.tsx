@@ -15,8 +15,8 @@ import globalMessages from '../../../i18n/globalMessages';
 const messages = defineMessages({
   save: 'Save Changes',
   saving: 'Saving…',
-  validationSmtpHostRequired: 'You must provide an SMTP host',
-  validationSmtpPortRequired: 'You must provide an SMTP port',
+  validationSmtpHostRequired: 'You must provide a hostname',
+  validationSmtpPortRequired: 'You must provide a port number',
   agentenabled: 'Enable Agent',
   emailsender: 'Sender Address',
   smtpHost: 'SMTP Host',
@@ -71,14 +71,28 @@ const NotificationsEmail: React.FC = () => {
 
   const NotificationsEmailSchema = Yup.object().shape({
     emailFrom: Yup.string()
-      .required(intl.formatMessage(messages.validationEmail))
+      .when('enabled', {
+        is: true,
+        then: Yup.string().required(
+          intl.formatMessage(messages.validationEmail)
+        ),
+        otherwise: Yup.string().nullable(),
+      })
       .email(intl.formatMessage(messages.validationEmail)),
-    smtpHost: Yup.string().required(
-      intl.formatMessage(messages.validationSmtpHostRequired)
-    ),
-    smtpPort: Yup.number().required(
-      intl.formatMessage(messages.validationSmtpPortRequired)
-    ),
+    smtpHost: Yup.string().when('enabled', {
+      is: true,
+      then: Yup.string().required(
+        intl.formatMessage(messages.validationSmtpHostRequired)
+      ),
+      otherwise: Yup.string().nullable(),
+    }),
+    smtpPort: Yup.number().when('enabled', {
+      is: true,
+      then: Yup.number().required(
+        intl.formatMessage(messages.validationSmtpPortRequired)
+      ),
+      otherwise: Yup.number().nullable(),
+    }),
   });
 
   if (!data && !error) {
