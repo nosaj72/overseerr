@@ -9,6 +9,7 @@ import { defineMessages, useIntl } from 'react-intl';
 import PageTitle from '../Common/PageTitle';
 import { useRouter } from 'next/router';
 import { useUser } from '../../hooks/useUser';
+import Link from 'next/link';
 
 const messages = defineMessages({
   requests: 'Requests',
@@ -97,7 +98,17 @@ const RequestList: React.FC = () => {
         ]}
       />
       <div className="flex flex-col justify-between mb-4 lg:items-end lg:flex-row">
-        <Header subtext={router.query.userId ? user?.displayName : ''}>
+        <Header
+          subtext={
+            router.query.userId ? (
+              <Link href={`/users/${user?.id}`}>
+                <a className="hover:underline">{user?.displayName}</a>
+              </Link>
+            ) : (
+              ''
+            )
+          }
+        >
           {intl.formatMessage(messages.requests)}
         </Header>
         <div className="flex flex-col flex-grow mt-2 sm:flex-row lg:flex-grow-0">
