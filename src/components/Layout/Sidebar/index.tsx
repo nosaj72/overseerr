@@ -123,7 +123,7 @@ const Sidebar: React.FC<SidebarProps> = ({ open, setClosed }) => {
   useClickOutside(navRef, () => setClosed());
   return (
     <>
-      <div className="md:hidden">
+      <div className="lg:hidden">
         <Transition show={open}>
           <div className="fixed inset-0 z-40 flex">
             <Transition
@@ -231,7 +231,7 @@ const Sidebar: React.FC<SidebarProps> = ({ open, setClosed }) => {
         </Transition>
       </div>
 
-      <div className="fixed top-0 bottom-0 left-0 hidden md:flex md:flex-shrink-0">
+      <div className="fixed top-0 bottom-0 left-0 hidden lg:flex lg:flex-shrink-0">
         <div className="flex flex-col w-64">
           <div className="flex flex-col flex-1 h-0 bg-gray-800">
             <div className="flex flex-col flex-1 pt-5 pb-4 overflow-y-auto">

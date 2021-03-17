@@ -41,18 +41,18 @@ const Layout: React.FC = ({ children }) => {
       </div>
       <Sidebar open={isSidebarOpen} setClosed={() => setSidebarOpen(false)} />
 
-      <div className="relative flex flex-col flex-1 w-0 min-w-0 mb-16 md:ml-64">
+      <div className="relative flex flex-col flex-1 w-0 min-w-0 mb-16 lg:ml-64">
         <div
           className={`fixed left-0 right-0 z-10 flex flex-shrink-0 h-16 bg-opacity-80 transition duration-300 ${
             isScrolled ? 'bg-gray-700' : 'bg-transparent'
-          } md:left-64`}
+          } lg:left-64`}
           style={{
             backdropFilter: isScrolled ? 'blur(5px)' : undefined,
             WebkitBackdropFilter: isScrolled ? 'blur(5px)' : undefined,
           }}
         >
           <button
-            className="px-4 text-gray-200 focus:outline-none focus:bg-gray-300 focus:text-gray-600 md:hidden"
+            className="px-4 text-gray-200 focus:outline-none focus:bg-gray-300 focus:text-gray-600 lg:hidden"
             aria-label="Open sidebar"
             onClick={() => setSidebarOpen(true)}
           >
@@ -70,7 +70,7 @@ const Layout: React.FC = ({ children }) => {
               />
             </svg>
           </button>
-          <div className="flex justify-between flex-1 pr-4 md:pr-4 md:pl-4">
+          <div className="flex justify-between flex-1 pr-4 lg:pr-4 lg:pl-4">
             <SearchInput />
             <div className="flex items-center ml-2">
               <LanguagePicker />
@@ -99,11 +99,11 @@ const Layout: React.FC = ({ children }) => {
                         />
                       </svg>
                     </div>
-                    <div className="flex-1 ml-3 md:flex md:justify-between">
+                    <div className="flex-1 ml-3 lg:flex lg:justify-between">
                       <p className="text-sm leading-5 text-white">
                         <FormattedMessage {...messages.alphawarning} />
                       </p>
-                      <p className="mt-3 text-sm leading-5 md:mt-0 md:ml-6">
+                      <p className="mt-3 text-sm leading-5 lg:mt-0 lg:ml-6">
                         <a
                           href="http://github.com/sct/overseerr"
                           className="font-medium text-indigo-100 transition duration-150 ease-in-out whitespace-nowrap hover:text-white"
